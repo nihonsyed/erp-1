@@ -6,3 +6,5 @@ spring:
     name: erp
   profiles:
     active: 'local'
+  h2:
+    console.enabled: true
