@@ -22,4 +22,7 @@ public class UserResponse {
 
     @Schema(description = "User's Email", example = "avash@gmail.com")
     private String email;
+
+    @Schema(description = "User's Role", example="Admin")
+    private String role;
 }

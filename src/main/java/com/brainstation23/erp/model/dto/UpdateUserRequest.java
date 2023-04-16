@@ -15,19 +15,24 @@ import java.util.UUID;
 @Setter
 public class UpdateUserRequest {
 
-    @NotNull
-    @Id
-    private UUID id;
-    @NotNull
-    @Schema(description = "User's first name", example = "Mahedi ")
+    @Schema(description = "Updates user's first name")
     private String firstName;
 
-    @NotNull
-    @Schema(description = "User's last name", example = "Mahedi ")
+
+    @Schema(description = "Updates user's last name")
     private String lastName;
 
-    @NotNull
-    @Schema(description = "User's email", example = "Mahedi ")
+
+    @Schema(description = "Updates user's role")
+    private String role;
+
+
+    @Schema(description = "Updates user's email")
     private String email;
+
+    @Schema(description = "Updates user's password")
+    private String password;
+
+
 
 }

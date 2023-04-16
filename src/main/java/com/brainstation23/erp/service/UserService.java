@@ -37,7 +37,10 @@ public class UserService {
         var entity = new UserEntity();
         entity.setId(UUID.randomUUID())
                 .setFirstName(createRequest.getFirstName())
-                .setLastName(createRequest.getLastName());
+                .setLastName(createRequest.getLastName()).setRole(createRequest.getRole())
+                .setEmail(createRequest.getEmail())
+                .setPassword(createRequest.getPassword())
+        ;
         var createdEntity = userRepository.save(entity);
         return createdEntity.getId();
     }
@@ -46,6 +49,11 @@ public class UserService {
         var entity = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
         entity.setFirstName(updateRequest.getFirstName());
+        entity.setLastName(updateRequest.getLastName());
+        entity.setEmail(updateRequest.getEmail());
+        entity.setRole(updateRequest.getRole());
+        entity.setPassword(updateRequest.getPassword());
+
         userRepository.save(entity);
     }
 
@@ -53,7 +61,4 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-//    private String generateOrganizationCode() {
-//        return RandomUtils.generateAlphaNumeric(6).toUpperCase();
-//    }
 }
