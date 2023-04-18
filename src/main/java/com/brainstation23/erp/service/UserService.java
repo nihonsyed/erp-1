@@ -32,6 +32,13 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
         return userMapper.entityToDomain(entity);
     }
+    public User getOneByEmail(String email)
+    {
+        var entity=userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
+            return userMapper.entityToDomain(entity);
+
+    }
 
     public UUID createOne(CreateUserRequest createRequest) {
         var entity = new UserEntity();
@@ -39,11 +46,12 @@ public class UserService {
                 .setFirstName(createRequest.getFirstName())
                 .setLastName(createRequest.getLastName()).setRole(createRequest.getRole())
                 .setEmail(createRequest.getEmail())
-                .setPassword(createRequest.getPassword())
-        ;
+                .setPassword(createRequest.getPassword());
         var createdEntity = userRepository.save(entity);
         return createdEntity.getId();
     }
+
+
 
     public void updateOne(UUID id, UpdateUserRequest updateRequest) {
         var entity = userRepository.findById(id)
