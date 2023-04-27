@@ -5,6 +5,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
 public class SwaggerApiDocConfig {
@@ -12,7 +13,9 @@ public class SwaggerApiDocConfig {
 	public OpenAPI customOpenAPI() {
 		final Info info = new Info().title("Java Trainees 2023").version("1.0.0")
 				.license(new License().name("© Brain Station 23 Ltd.").url("https://brainstation-23.com"));
-		final OpenAPI openAPI = new OpenAPI().info(info);
+		final OpenAPI openAPI = new OpenAPI()
+				.addServersItem(new Server().url("/"))
+				.info(info);
 		return openAPI;
 	}
 }
